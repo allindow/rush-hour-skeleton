@@ -76,7 +76,7 @@ module TestHelpers
   end
 
   def payload
-    JSON.parse(raw_payload)
+    JSON.parse(raw_playload)
   end
 
   def payload_parser
