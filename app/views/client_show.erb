@@ -1,2 +1,11 @@
-:)
-<!-- <%#= @avg_response_time %> -->
+
+<h2><%= @identifier.identifier %></h2>
+<p>Average Response Time: <%=  @avg_resp_time %> seconds</p>
+<p>Maximum Response Time: <%=  @max_resp_time %> seconds</p>
+<p>Minimum Response Time: <%=  @min_resp_time %> seconds</p>
+<p>Most Frequent Request Type: <%=  @most_freq_req_type %></p>
+<p>All Request Types Used: <%=  @all_verbs %></p>
+<p>All URLs (most requested to least requested): <%=  @all_urls_ranked %></p>
+<p>All Browsers Used: <%=  @all_browsers %></p>
+<p>All Operating Sytems Used: <%=  @all_os %></p>
+<p>All Resolutions Used: <%=  @all_res %></p>

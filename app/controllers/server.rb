@@ -18,9 +18,15 @@ module RushHour
     get "/sources/:identifier" do |identifier|
       @identifier = PayloadChecker.response2(identifier)
       # @identifier = (Client.where(identifier: identifier).take)
-      @avg_response_time = @identifier.average_response_time
-      @max_response_time = @identifier.maximum_response_time
-      @min_response_time = @identifier.minimum_response_time
+      @avg_resp_time       = @identifier.average_response_time
+      @max_resp_time       = @identifier.max_response_time
+      @min_resp_time       = @identifier.min_response_time
+      @most_freq_req_type  = @identifier.most_frequent_request_type
+      @all_verbs           = @identifier.all_verbs
+      @all_urls_ranked     = @identifier.all_urls_most_to_least_requested
+      @all_browsers        = @identifier.all_browsers
+      @all_os              = @identifier.all_os
+      @all_res             = @identifier.all_resolutions
 
       erb :client_show
     end
