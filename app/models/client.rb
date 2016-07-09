@@ -25,6 +25,7 @@ class Client < ActiveRecord::Base
   end
 
   def all_verbs
+    # group.count returning hash in different order. sort?
     request_types.group(:verb).count.keys
   end
 

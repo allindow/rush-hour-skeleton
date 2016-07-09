@@ -36,4 +36,23 @@ class PayloadChecker
       responder(client, params)
     end
   end
+
+  def self.response2(identifier)
+    client = Client.find_by(identifier: identifier)
+    if client.nil?
+      nil_client
+    else
+      #select FROM payload_requests where client identifier
+      # x = Client.where(identifier: identifier)
+      if client.payload_requests
+        #asiign the identifier to the instace variable
+        Client.where(identifier: identifier).take
+      else
+        payload_missing
+      end
+    end
+  end
+
+
+
 end
