@@ -284,7 +284,7 @@ module TestHelpers
     PayloadRequest.create(
     requested_at: Faker::Time.between(2.days.ago, Date.today, :all).to_s,
     responded_in: 20,
-    url_id: Url.find_or_create_by(address: "http://example.com/mattisnice").id,
+    url_id: Url.find_or_create_by(address: "http://example.com/jasonisnice").id,
     ip_id: create_faker_ip.id,
     request_type_id: RequestType.find_or_create_by(verb: "PUT").id,
     software_agent_id: SoftwareAgent.find_or_create_by(message: "Mozilla/5.0 (Macintosh; Windows XP) AppleWebKit/537.17 (KHTML, like Gecko) Firefox/24.0.1309.0 Chrome/537.17").id,
@@ -306,7 +306,7 @@ module TestHelpers
     PayloadRequest.create(
     requested_at: Faker::Time.between(2.days.ago, Date.today, :all).to_s,
     responded_in: 20,
-    url_id: Url.find_or_create_by(address: "http://example.com/mattisnice").id,
+    url_id: Url.find_or_create_by(address: "http://example.com/robertaisnice").id,
     ip_id: create_faker_ip.id,
     request_type_id: RequestType.find_or_create_by(verb: "PUT").id,
     software_agent_id: SoftwareAgent.find_or_create_by(message: "Mozilla/5.0 (Macintosh; Windows XP) AppleWebKit/537.17 (KHTML, like Gecko) Firefox/24.0.1309.0 Chrome/537.17").id,
