@@ -6,12 +6,12 @@ module RushHour
     end
 
     post '/sources' do
-      cv = ClientChecker.new(params).res
+      cv = ClientChecker.response(params)
       status, body = cv
     end
 
     post "/sources/:identifier/data" do |identifier|
-      RequestMaker.new(identifier, params).make
+      RequestMaker.make(identifier, params)
     end
   end
 end
