@@ -45,6 +45,10 @@ class Client < ActiveRecord::Base
     end.uniq
   end
 
+  def all_resolutions
+    resolutions.pluck(:width, :height).uniq
+  end
+
 
   # def self.average_response_time(identifier)
   #   client = Client.where(identifier: identifier).take

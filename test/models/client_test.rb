@@ -106,7 +106,15 @@ class ClientTest < Minitest::Test
 
     client = Client.first
 
-    assert_equal ["iOs", "Windows XP"], client.all_os    
+    assert_equal ["iOs", "Windows XP"], client.all_os
+  end
+
+  def test_all_resolutions
+    eight_payload_requests
+
+    client = Client.first
+
+    assert_equal [["1020", "640"], ["1520", "1080"], ["1280", "800"], ["1600", "1000"]], client.all_resolutions
   end
 
   # def test_average_response_time_for_client
