@@ -78,6 +78,7 @@ class ClientTest < Minitest::Test
   end
 
   def test_all_verbs
+    skip
     five_payload_requests
 
     client = Client.first
