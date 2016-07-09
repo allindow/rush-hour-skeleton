@@ -6,12 +6,16 @@ module RushHour
     end
 
     post '/sources' do
+      require "pry"; binding.pry
       cv = ClientChecker.response(params)
       status, body = cv
     end
 
     post "/sources/:identifier/data" do |identifier|
-      RequestMaker.make(identifier, params)
+      require "pry"; binding.pry
+      params = Parser.parsed_payload(params)
+      cv = PayloadChecker.response(identifier, params)
+      status, body = cv
     end
   end
 end
