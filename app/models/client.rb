@@ -20,8 +20,33 @@ class Client < ActiveRecord::Base
   end
 
   def most_frequent_request_type #test that most freq always come last in the hash
-    top_req = request_types.group(:verb).count.sort_by {|ua| ua[-1]}
+    top_req = request_types.group(:verb).count.sort_by {|usr_agt| usr_agt[-1]}
     top_req.last[0]
+  end
+
+  def all_verbs
+    request_types.group(:verb).count.keys
+  end
+
+  def all_urls_most_to_least_requested
+    top_urls = urls.group(:address).count.sort_by {|url| url[-1]}
+    top_urls.map { |url| url[0]}.reverse
+  end
+
+  def all_browsers
+    software_agents.pluck(:message).map do |item|
+      UserAgent.parse(item).browser
+    end.uniq
+  end
+
+  def all_os #refactor with browser
+    software_agents.pluck(:message).map do |item|
+      UserAgent.parse(item).os
+    end.uniq
+  end
+
+  def all_resolutions
+    resolutions.pluck(:width, :height).uniq
   end
 
 

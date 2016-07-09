@@ -77,6 +77,46 @@ class ClientTest < Minitest::Test
     assert_equal "POST", client.most_frequent_request_type
   end
 
+  def test_all_verbs
+    five_payload_requests
+
+    client = Client.first
+
+    assert_equal ["POST", "GET"], client.all_verbs
+  end
+
+  def test_all_urls_most_to_least_requested
+    eight_payload_requests
+
+    client = Client.first
+
+    assert_equal ["http://example.com/mattisnice", "http://example.com/jasonisnice", "http://example.com/robertaisnice"], client.all_urls_most_to_least_requested
+  end
+
+  def test_all_browsers
+    five_payload_requests
+
+    client = Client.first
+
+    assert_equal ["Safari", "Chrome"], client.all_browsers
+  end
+
+  def test_all_os
+    five_payload_requests
+
+    client = Client.first
+
+    assert_equal ["iOs", "Windows XP"], client.all_os
+  end
+
+  def test_all_resolutions
+    eight_payload_requests
+
+    client = Client.first
+
+    assert_equal [["1020", "640"], ["1520", "1080"], ["1280", "800"], ["1600", "1000"]], client.all_resolutions
+  end
+
   # def test_average_response_time_for_client
   #   five_payload_requests
   #
