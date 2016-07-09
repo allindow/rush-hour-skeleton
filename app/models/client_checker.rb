@@ -1,12 +1,7 @@
 class ClientChecker
-  attr_reader :client
 
-  def initialize(params)
-    @client = Client.create(identifier: params["identifier"], root_url: params["rootUrl"])
-  end
-
-  def res
-    # require 'pry'; binding.pry
+  def self.response(params)
+    client = Client.create(identifier: params["identifier"], root_url: params["rootUrl"])
     if client.save
       [200, "Sucess"]
     elsif client.errors.full_messages.join(', ') == "Identifier has already been taken"
