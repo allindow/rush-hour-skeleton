@@ -1,4 +1,5 @@
 require_relative '../test_helper'
+require 'tilt/erb'
 
 class RushHourTest < Minitest::Test
   include TestHelpers
@@ -86,6 +87,15 @@ class RushHourTest < Minitest::Test
     get '/sources/jumpstartlab/urls/blog'
 
     assert_equal 'http://jumpstartlab.com/blog', PayloadChecker.confirm_url_path('jumpstartlab','blog')
+  end
+
+  def test_find_client
+    post '/sources', {identifier: 'jumpstartlab', rootUrl: 'http://jumpstartlab.com'}
+    post '/sources/jumpstartlab/data', {payload: raw_payload}
+    get "/sources/jumpstartlab"
+
+    assert_equal "jumpstartlab", PayloadChecker.confirm_client_account("jumpstartlab").identifier
+    assert_equal "http://jumpstartlab.com", PayloadChecker.confirm_client_account("jumpstartlab").root_url
   end
 
 end
