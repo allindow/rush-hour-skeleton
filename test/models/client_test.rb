@@ -67,12 +67,12 @@ class ClientTest < Minitest::Test
     assert_equal 20, client.min_response_time
   end
 
-  def test_most_frequent_request_type
+  def test_most_frequent_request_type #check this method
     eight_payload_requests
 
     client = Client.first
 
-    assert_equal "POST", client.most_frequent_request_type
+    assert_equal "GET", client.most_frequent_request_type
   end
 
   def test_all_verbs
@@ -80,7 +80,7 @@ class ClientTest < Minitest::Test
 
     client = Client.first
 
-    assert_equal ["GET", "POST"], client.all_verbs
+    assert_equal "GET, POST", client.all_verbs
   end
 
   def test_all_urls_most_to_least_requested
@@ -96,7 +96,7 @@ class ClientTest < Minitest::Test
 
     client = Client.first
 
-    assert_equal ["Safari", "Chrome"], client.all_browsers
+    assert_equal "Safari, Chrome", client.all_browsers
   end
 
   def test_all_os
@@ -104,7 +104,7 @@ class ClientTest < Minitest::Test
 
     client = Client.first
 
-    assert_equal ["iOs", "Windows XP"], client.all_os
+    assert_equal "iOs, Windows XP", client.all_os
   end
 
   def test_all_resolutions
@@ -112,7 +112,7 @@ class ClientTest < Minitest::Test
 
     client = Client.first
 
-    assert_equal [["1020", "640"], ["1520", "1080"], ["1280", "800"], ["1600", "1000"]], client.all_resolutions
+    assert_equal "1020 x 640, 1520 x 1080, 1280 x 800, 1600 x 1000", client.all_resolutions
   end
 
 end

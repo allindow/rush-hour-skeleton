@@ -21,12 +21,17 @@ class Client < ActiveRecord::Base
   end
 
   def most_frequent_request_type
-    top_req = request_types.group(:verb).count.sort_by {|usr_agt| usr_agt[-1]}
+    freq = request_types.group(:verb).count
+    top_req = freq.sort_by {|usr_agt| usr_agt}.sort_by(&:last).reverse
     top_req.last[0]
+    
+    # top_req = request_types.group(:verb).count
+    # .sort_by {|usr_agt| usr_agt[-1]}
+    # top_req.last[0]
   end
 
   def all_verbs
-    request_types.group(:verb).count.keys.sort
+    request_types.group(:verb).count.keys.sort.join(", ")
   end
 
   def all_urls_most_to_least_requested
@@ -37,17 +42,17 @@ class Client < ActiveRecord::Base
   def all_browsers
     software_agents.pluck(:message).map do |item|
       UserAgent.parse(item).browser
-    end.uniq
+    end.uniq.join(", ")
   end
 
   def all_os #refactor with browser
     software_agents.pluck(:message).map do |item|
       UserAgent.parse(item).os
-    end.uniq
+    end.uniq.join(", ")
   end
 
   def all_resolutions
-    resolutions.pluck(:width, :height).uniq
+    resolutions.pluck(:width, :height).uniq.map { |w, h| "#{w} x #{h}"}.join(', ')
   end
 
 end
