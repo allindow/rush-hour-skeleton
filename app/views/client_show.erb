@@ -2,7 +2,7 @@
   <h2><%= @identifier.identifier.capitalize %></h2>
 </div>
 ​
-<div class="well">
+<div class="well client-stats">
   <ul>
   <% PayloadChecker.client_content(@identifier).each do |stat|%>
     <li> <%= stat %> </li>
