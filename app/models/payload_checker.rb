@@ -49,6 +49,44 @@ class PayloadChecker
     end
   end
 
+  def self.client_content(client)
+    if client.payload_requests.empty?
+      client_no_payload
+    else
+      valid_client_data(client)
+    end
+  end
+
+  def self.client_no_payload
+    ["Nothing registered for this client"]
+  end
+
+  def self.valid_client_data(client)
+    [
+    "Average Response Time: #{client.average_response_time}",
+    "Maximum Response Time: #{client.max_response_time}",
+    "Minimum Response Time: #{client.min_response_time}",
+    "Most Frequent Request Type: #{client.most_frequent_request_type}",
+    "All Verbs: #{client.all_verbs}",
+    "All Browsers: #{client.all_browsers}",
+    "All Operating Systems: #{client.all_os}",
+    "All Resolutions: #{client.all_resolutions}"
+    ]
+  end
+
+  #
+  # @avg_resp_time       = @identifier.average_response_time
+  # @max_resp_time       = @identifier.max_response_time
+  # @min_resp_time       = @identifier.min_response_time
+  # @most_freq_req_type  = @identifier.most_frequent_request_type
+  # @all_verbs           = @identifier.all_verbs
+  # @all_urls_ranked     = @identifier.all_urls_most_to_least_requested
+  # @all_browsers        = @identifier.all_browsers
+  # @all_os              = @identifier.all_os
+  # @all_res             = @identifier.all_resolutions
+
+
+
   def self.confirm_client_account(identifier)
     client = Client.find_by(identifier: identifier)
     if client.nil?

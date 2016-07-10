@@ -1,0 +1,18 @@
+
+html {
+  font-family: "open sans";
+  /*font-family: 'Lato', sans-serif;*/
+}
+
+body {
+  color: #212121;
+}
+
+/********** ALL ***********/
+.page-title {
+  margin-top: 100px;
+}
+
+#page-body {
+  margin-top: 40px;
+}

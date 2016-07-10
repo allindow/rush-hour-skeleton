@@ -38,29 +38,5 @@ class PayloadRequest < ActiveRecord::Base
   def self.max_response_time
     PayloadRequest.maximum(:responded_in)
   end
-
-  # def self.max_response_time_by_url(url)
-  #   url = Url.select { |m| m.address == url }
-  #   url = url.first.id
-  #   url.payload_requests.maximum(:responded_in)
-  # end
-  #
-  # def self.all_response_times_by_url(url)
-  #   # url = Url.select { |m| m.address == url }
-  #   # url.first.id
-  #   # PayloadRequest.where(url_id: url.first.id).pluck(:responded_in)
-  # end
-  #
-  # def self.min_response_time_by_url(url)
-  #   url = Url.select { |m| m.address == url }
-  #   url = url.first.id
-  #   url.payload_requests.minimum(:responded_in)
-  # end
-  #
-  # def self.average_response_time_by_url(url)
-  #   url = Url.select { |m| m.address == url }
-  #   url = url.first.id
-  #   url.payload_requests.average(:responded_in)
-  # end
-
+  
 end

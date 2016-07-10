@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/application.css">
+
+    <!-- <link href='https://fonts.googleapis.com/css?family=Abril+Fatface' rel='stylesheet' type='text/css'> -->
+    <title>Rush Hour Application</title>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top col-md-12 col-xs-12">
+      <div class="container-fluid">
+        <div class="navbar-header">
+
+          <div class="dropdown">
+            <a id="dLabel" data-target="#" href="http://example.com" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              Client
+              <span class="caret"></span>
+            </a>
+
+            <ul class="dropdown-menu" aria-labelledby="dLabel">
+              <% @clients.each do |client| %>
+
+              <li><a href="/sources/<%= client.identifier%>"><%= client.identifier  %></a>
+              </li>
+              <% end %>
+            </ul>
+          </div>
+
+
+        </div>
+      <div>
+    </nav>
+
+
+
+    <div class = "cointainer col-md-12" id="page-body">
+      <%= yield %>
+    </div>
+
+
+
+
+
+
+  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script src='/js/bootstrap.js'></script>
+
+  </body>
+
+</html>
