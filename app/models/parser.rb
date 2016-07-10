@@ -15,6 +15,4 @@ class Parser
       referral_id: Referral.find_or_create_by(address: param_parser(params)["referredBy"]).id}
   end
 
-
-
 end

@@ -41,16 +41,28 @@ class PayloadChecker
     end
   end
 
+  def self.client_responder(client, identifier)
+    if client.payload_requests
+      Client.where(identifier: identifier).take
+    else
+      payload_missing
+    end
+  end
+
   def self.confirm_client_account(identifier)
     client = Client.find_by(identifier: identifier)
     if client.nil?
       nil_client
     else
-      if client.payload_requests
-        Client.where(identifier: identifier).take
-      else
-        payload_missing
-      end
+      client_responder(client, identifier)
+    end
+  end
+
+  def self.url_response(url)
+    if url.nil?
+      nil_url
+    else
+      url.address
     end
   end
 
@@ -59,13 +71,7 @@ class PayloadChecker
     client_root = client.root_url
     url = client_root + '/' + relative_path
     url = Url.find_by(address: url)
-      if url.nil?
-        nil_url
-      else
-        url
-      end
+    url_response(url)
   end
-
-
 
 end

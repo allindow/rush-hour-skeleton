@@ -36,9 +36,8 @@ class ParserTest < Minitest::Test
   def test_returns_url_instance_if_url_requested
     client = Client.create(identifier: 'jumpstartlab', root_url: 'http://jumpstartlab.com')
     client.payload_requests.create(Parser.parsed_payload(test_params))
-    url = Url.find(1)
 
-    assert_equal url, PayloadChecker.confirm_url_path('jumpstartlab', 'blog')
+    assert_equal "http://jumpstartlab.com/blog", PayloadChecker.confirm_url_path('jumpstartlab', 'blog')
   end
 
   def test_403_not_requested_if_url_not_requested

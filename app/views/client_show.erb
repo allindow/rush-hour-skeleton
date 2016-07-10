@@ -7,7 +7,7 @@
 <p>All Request Types Used: <%=  @all_verbs %></p>
 <p>All URLs (most requested to least requested):</p>
   <%  @all_urls_ranked.each do |url| %>
-    <a href=""><%= url %></a><br>
+    <a href="/sources/<%= @identifier.identifier %>/urls/<%=Url.relative_path(url)%>"><%= url %></a><br>
     <% end %>
 ​
 ​

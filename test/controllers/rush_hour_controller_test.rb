@@ -80,13 +80,12 @@ class RushHourTest < Minitest::Test
     assert_equal "http://jumpstartlab.com", PayloadChecker.confirm_client_account("jumpstartlab").root_url
   end
 
-  def test_it_finds_url_path #WIP
-    skip
+  def test_it_finds_url_path
     post '/sources', {identifier: 'jumpstartlab', rootUrl: 'http://jumpstartlab.com'}
     post '/sources/jumpstartlab/data', {payload: raw_payload}
     get '/sources/jumpstartlab/urls/blog'
-    ​
-    assert_equal 'http://jumpstartlab.com/blog', PayloadChecker.confirm_url_path('jumpstartlab', 'blog')
+
+    assert_equal 'http://jumpstartlab.com/blog', PayloadChecker.confirm_url_path('jumpstartlab','blog')
   end
 
 end
