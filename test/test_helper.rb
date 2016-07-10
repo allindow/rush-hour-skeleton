@@ -281,3 +281,7 @@ module TestHelpers
 end
 
 Capybara.app = RushHour::Server
+Class FeatureTest < Minitest::Test
+  include Capybara::DSL
+  include TestHelpers
+end

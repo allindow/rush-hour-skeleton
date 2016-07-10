@@ -5,6 +5,12 @@ module RushHour
       erb :error
     end
 
+    get '/sources' do
+      @clients = Client.all
+
+      erb :index
+    end
+
     post '/sources' do
       cv = ClientChecker.response(params)
       status, body = cv
@@ -16,6 +22,7 @@ module RushHour
     end
 
     get "/sources/:identifier" do |identifier|
+      @clients = Client.all
       @identifier = PayloadChecker.confirm_client_account(identifier)
       # @identifier = (Client.where(identifier: identifier).take)
       @avg_resp_time       = @identifier.average_response_time
@@ -32,6 +39,7 @@ module RushHour
     end
 
     get "/sources/:identifier/urls/:RELATIVEPATH" do |identifier, relativepath|
+      @clients = Client.all
       @identifier = PayloadChecker.confirm_client_account(identifier)
       @relativepath = relativepath
       erb :client_url_show
