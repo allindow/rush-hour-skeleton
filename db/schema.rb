@@ -70,9 +70,8 @@ ActiveRecord::Schema.define(version: 20160709014715) do
 
   create_table "urls", force: :cascade do |t|
     t.text     "address"
-    t.integer  "referral_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

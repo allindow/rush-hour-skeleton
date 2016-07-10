@@ -37,7 +37,7 @@ class PayloadChecker
     end
   end
 
-  def self.response2(identifier)
+  def self.confirm_client_account(identifier)
     client = Client.find_by(identifier: identifier)
     if client.nil?
       nil_client
