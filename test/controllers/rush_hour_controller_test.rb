@@ -81,7 +81,7 @@ class RushHourTest < Minitest::Test
   end
 
   def test_it_finds_url_path #WIP
-    # skip
+    skip
     post '/sources', {identifier: 'jumpstartlab', rootUrl: 'http://jumpstartlab.com'}
     post '/sources/jumpstartlab/data', {payload: raw_payload}
     get '/sources/jumpstartlab/urls/blog'
