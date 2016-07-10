@@ -8,6 +8,10 @@ class PayloadChecker
     [403, "Application Not Registered"]
   end
 
+  def self.nil_url
+      [403, "Url has not been requested"]
+    end
+
   def self.error_message(client)
     client.errors.full_messages.join(", ")
   end
@@ -37,19 +41,37 @@ class PayloadChecker
     end
   end
 
+  def self.client_responder(client, identifier)
+    if client.payload_requests
+      Client.where(identifier: identifier).take
+    else
+      payload_missing
+    end
+  end
+
   def self.confirm_client_account(identifier)
     client = Client.find_by(identifier: identifier)
     if client.nil?
       nil_client
     else
-      if client.payload_requests
-        Client.where(identifier: identifier).take
-      else
-        payload_missing
-      end
+      client_responder(client, identifier)
     end
   end
 
+  def self.url_response(url)
+    if url.nil?
+      nil_url
+    else
+      url.address
+    end
+  end
 
+  def self.confirm_url_path(identifier, relative_path)
+    client = Client.where(identifier: identifier).take
+    client_root = client.root_url
+    url = client_root + '/' + relative_path
+    url = Url.find_by(address: url)
+    url_response(url)
+  end
 
 end

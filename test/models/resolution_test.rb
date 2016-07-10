@@ -4,22 +4,18 @@ class ResolutionTest < Minitest::Test
   include TestHelpers
 
   def test_it_can_create_resolution_instance
-    resolution = create_resolution
-    width = "1920"
-    height = "1280"
+    Resolution.create(width: "1920", height: "1280")
 
-    assert_equal width, resolution.width
-    assert_equal height, resolution.height
+    assert Resolution.exists?(1)
   end
 
   def test_resolution_relationship_to_payload_requests
-    create_payload(1)
+    three_relationship_requests
     resolution = Resolution.first
     resolution.payload_requests << PayloadRequest.all.first
 
-    refute resolution.payload_requests.empty?
-    resolution.payload_requests.exists?(resolution.id)
-    assert_equal 1, resolution.payload_requests.size
+    assert resolution.respond_to?(:payload_requests)
+    assert_instance_of PayloadRequest, resolution.payload_requests.first
   end
 
   def test_it_cannot_create_resolution_without_width

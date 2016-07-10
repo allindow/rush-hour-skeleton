@@ -1,0 +1,5 @@
+<ul>
+  <% UrlChecker.content(@identifier.root_url + "/#{@relativepath}").each do |stat| %>
+  <li><%= stat %></li>
+  <%end%>
+</ul>

@@ -1,3 +1,6 @@
+require 'simplecov'
+SimpleCov.start
+
 ENV["RACK_ENV"] ||= "test"
 
 require 'bundler'
@@ -13,6 +16,7 @@ require 'json'
 require 'useragent'
 require 'faker'
 require 'rack/test'
+require 'tilt/erb'
 
 DatabaseCleaner.strategy = :truncation
 
@@ -23,76 +27,18 @@ module TestHelpers
     RushHour::Server
   end
 
+  def test_params
+    {"payload"=>
+      "{\n    \"url\":\"http://jumpstartlab.com/blog\",
+      \n    \"requestedAt\":\"2013-02-16 21:38:28 -0700\",\n
+      \"respondedIn\":37,\n
+      \"referredBy\":\"http://jumpstartlab.com\",\n
+      \"requestType\":\"GET\",\n
+      \"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1309.0 Safari/537.17\",\n
+      \"resolutionWidth\":\"1920\",\n
+      \"resolutionHeight\":\"1280\",\n
+      \"ip\":\"63.29.38.211\"\n  }"}
 
-  def create_url
-    Url.create(
-      address: payload_parser[:url]
-      )
-  end
-
-  def create_ip
-    Ip.create(
-    address: payload_parser[:ip]
-    )
-  end
-
-  def create_referral
-    Referral.create(
-      address: payload_parser[:referral]
-    )
-  end
-
-  def create_resolution
-    Resolution.create(
-    width: payload_parser[:resolution_width],
-    height: payload_parser[:resolution_height],
-    )
-  end
-
-  def create_software_agent
-    SoftwareAgent.create(
-    message: payload_parser[:software_agent]
-    )
-  end
-
-  def create_request_type
-    RequestType.create(
-    verb: payload_parser[:request_type]
-    )
-  end
-
-  def create_payload(n)
-    n.times do
-      PayloadRequest.create(
-      requested_at: payload_parser[:requested_at],
-      responded_in: payload_parser[:responded_in],
-      url_id: create_url.id,
-      ip_id: create_ip.id,
-      request_type_id: create_request_type.id,
-      software_agent_id: create_software_agent.id,
-      resolution_id: create_resolution.id,
-      client_id: Client.create(identifier: rand(1..1000), root_url: rand(1..1000)).id,
-      referral_id: create_faker_referral.id
-      )
-    end
-  end
-
-  def payload
-    JSON.parse(raw_payload)
-  end
-
-  def payload_parser
-    {
-    :url => payload["url"],
-    :requested_at => payload["requestedAt"],
-    :responded_in => payload["respondedIn"],
-    :referral => payload["referredBy"],
-    :request_type => payload["requestType"],
-    :software_agent => payload["userAgent"],
-    :resolution_width => payload["resolutionWidth"],
-    :resolution_height => payload["resolutionHeight"],
-    :ip => payload["ip"]
-    }
   end
 
   def raw_payload

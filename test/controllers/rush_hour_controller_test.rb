@@ -9,7 +9,7 @@ class RushHourTest < Minitest::Test
 
     assert_equal 1, Client.count
     assert_equal 200, last_response.status
-    assert_equal "Sucess", last_response.body
+    assert_equal "Success", last_response.body
   end
 
   def test_that_it_cannot_create_client_without_identifier
@@ -17,7 +17,7 @@ class RushHourTest < Minitest::Test
 
     assert_equal 0, Client.count
     assert_equal 400, last_response.status
-    assert_equal "Identifier can't be blank", last_response.body
+    assert_equal "Missing Parameters", last_response.body
   end
 
   def test_that_it_cannot_create_client_without_root_url
@@ -25,7 +25,7 @@ class RushHourTest < Minitest::Test
 
     assert_equal 0, Client.count
     assert_equal 400, last_response.status
-    assert_equal "Root url can't be blank", last_response.body
+    assert_equal "Missing Parameters", last_response.body
   end
 
   def test_it_does_not_create_client_with_existing_identifier
@@ -70,6 +70,23 @@ class RushHourTest < Minitest::Test
     assert_equal 0, PayloadRequest.count
     assert_equal 403, last_response.status
     assert_equal "Application Not Registered", last_response.body
+  end
+
+  def test_it_can_find_client
+    post '/sources', {identifier: 'jumpstartlab', rootUrl: 'http://jumpstartlab.com'}
+    post '/sources/jumpstartlab/data', {payload: raw_payload}
+    get "/sources/jumpstartlab"
+
+    assert_equal "jumpstartlab", PayloadChecker.confirm_client_account("jumpstartlab").identifier
+    assert_equal "http://jumpstartlab.com", PayloadChecker.confirm_client_account("jumpstartlab").root_url
+  end
+
+  def test_it_finds_url_path
+    post '/sources', {identifier: 'jumpstartlab', rootUrl: 'http://jumpstartlab.com'}
+    post '/sources/jumpstartlab/data', {payload: raw_payload}
+    get '/sources/jumpstartlab/urls/blog'
+
+    assert_equal 'http://jumpstartlab.com/blog', PayloadChecker.confirm_url_path('jumpstartlab','blog')
   end
 
   def test_find_client

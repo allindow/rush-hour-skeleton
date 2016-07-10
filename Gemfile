@@ -22,4 +22,5 @@ end
 group :test do
   gem 'database_cleaner'
   gem 'rake'
+  gem 'simplecov', :require => false, :group => :test
 end
