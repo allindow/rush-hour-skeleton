@@ -3,7 +3,7 @@ class ClientChecker
   def self.response(params)
     client = Client.create(identifier: params["identifier"], root_url: params["rootUrl"])
     if client.save
-      [200, "Sucess"]
+      [200, "Success"]
     elsif client.errors.full_messages.join(', ') == "Identifier has already been taken"
       [403, 'Identifier Already Exists']
     else

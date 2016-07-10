@@ -1,3 +1,6 @@
+require 'simplecov'
+SimpleCov.start
+
 ENV["RACK_ENV"] ||= "test"
 
 require 'bundler'
@@ -61,39 +64,39 @@ module TestHelpers
     )
   end
 
-  def create_payload(n)
-    n.times do
-      PayloadRequest.create(
-      requested_at: payload_parser[:requested_at],
-      responded_in: payload_parser[:responded_in],
-      url_id: create_url.id,
-      ip_id: create_ip.id,
-      request_type_id: create_request_type.id,
-      software_agent_id: create_software_agent.id,
-      resolution_id: create_resolution.id,
-      client_id: Client.create(identifier: rand(1..1000), root_url: rand(1..1000)).id,
-      referral_id: create_faker_referral.id
-      )
-    end
-  end
+  # def create_payload(n)
+  #   n.times do
+  #     PayloadRequest.create(
+  #     requested_at: payload_parser[:requested_at],
+  #     responded_in: payload_parser[:responded_in],
+  #     url_id: create_url.id,
+  #     ip_id: create_ip.id,
+  #     request_type_id: create_request_type.id,
+  #     software_agent_id: create_software_agent.id,
+  #     resolution_id: create_resolution.id,
+  #     client_id: Client.create(identifier: rand(1..1000), root_url: rand(1..1000)).id,
+  #     referral_id: create_faker_referral.id
+  #     )
+  #   end
+  # end
 
-  def payload
-    JSON.parse(raw_payload)
-  end
-
-  def payload_parser
-    {
-    :url => payload["url"],
-    :requested_at => payload["requestedAt"],
-    :responded_in => payload["respondedIn"],
-    :referral => payload["referredBy"],
-    :request_type => payload["requestType"],
-    :software_agent => payload["userAgent"],
-    :resolution_width => payload["resolutionWidth"],
-    :resolution_height => payload["resolutionHeight"],
-    :ip => payload["ip"]
-    }
-  end
+  # def payload
+  #   JSON.parse(raw_payload)
+  # end
+  #
+  # def payload_parser
+  #   {
+  #   :url => payload["url"],
+  #   :requested_at => payload["requestedAt"],
+  #   :responded_in => payload["respondedIn"],
+  #   :referral => payload["referredBy"],
+  #   :request_type => payload["requestType"],
+  #   :software_agent => payload["userAgent"],
+  #   :resolution_width => payload["resolutionWidth"],
+  #   :resolution_height => payload["resolutionHeight"],
+  #   :ip => payload["ip"]
+  #   }
+  # end
 
   def raw_payload
     '{

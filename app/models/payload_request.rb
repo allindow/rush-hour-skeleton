@@ -19,7 +19,7 @@ class PayloadRequest < ActiveRecord::Base
   belongs_to :referral
 
   def self.most_frequent_request_type
-    verbs = PayloadRequest.all.pluck(:request_type_id)
+    verbs = PayloadRequest.pluck(:request_type_id)
     freq = verbs.reduce(Hash.new(0)) { |hash,value| hash[value] += 1; hash }
     id = freq.max_by { |key,value| value}
     id = id.first
@@ -27,7 +27,7 @@ class PayloadRequest < ActiveRecord::Base
   end
 
   def self.url_frequency
-    addresses = PayloadRequest.all.pluck(:url_id)
+    addresses = PayloadRequest.pluck(:url_id)
     freq = addresses.reduce(Hash.new(0)) { |hash,value| hash[value] += 1; hash }
     url = freq.sort_by { |key,value| value}.reverse
     url.map do |item|
@@ -40,13 +40,13 @@ class PayloadRequest < ActiveRecord::Base
   end
 
   def self.max_response_time_by_url(url)
-    url = Url.all.select { |m| m.address == url }
+    url = Url.select { |m| m.address == url }
     url.first.id
     PayloadRequest.where(url_id: url.first.id).pluck(:responded_in).max
   end
 
   def self.min_response_time_by_url(url)
-    url = Url.all.select { |m| m.address == url }
+    url = Url.select { |m| m.address == url }
     url.first.id
     PayloadRequest.where(url_id: url.first.id).pluck(:responded_in).min
   end

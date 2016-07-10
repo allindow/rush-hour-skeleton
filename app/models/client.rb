@@ -51,19 +51,4 @@ class Client < ActiveRecord::Base
     resolutions.pluck(:width, :height).uniq
   end
 
-
-  # def self.average_response_time(identifier)
-  #   client = Client.where(identifier: identifier).take
-  #   client.payload_requests.average(:responded_in).to_i
-  # end
-  #
-  # def self.max_response_time(identifier)
-  #   client = Client.where(identifier: identifier).take
-  #   client.payload_requests.maximum(:responded_in).to_i
-  # end
-  #
-  # def self.min_response_time(identifier)
-  #   client = Client.where(identifier: identifier).take
-  #   client.payload_requests.minimum(:responded_in).to_i
-  # end
 end

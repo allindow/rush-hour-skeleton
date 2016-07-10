@@ -8,7 +8,7 @@ class RushHourTest < Minitest::Test
 
     assert_equal 1, Client.count
     assert_equal 200, last_response.status
-    assert_equal "Sucess", last_response.body
+    assert_equal "Success", last_response.body
   end
 
   def test_that_it_cannot_create_client_without_identifier
@@ -80,6 +80,15 @@ class RushHourTest < Minitest::Test
     require "pry"; binding.pry
 
     assert_instance_of Client, client.confirm_client_account
+  end
+
+  def test_it_finds_url_path #WIP
+    skip
+    post '/sources', {identifier: 'jumpstartlab', rootUrl: 'http://jumpstartlab.com'}
+    post '/sources/jumpstartlab/data', {payload: raw_payload}
+    get '/sources/jumpstartlab/urls/blog'
+    ​
+    assert_equal 'http://jumpstartlab.com/blog', PayloadChecker.confirm_url_path('jumpstartlab', 'blog')
   end
 
 end

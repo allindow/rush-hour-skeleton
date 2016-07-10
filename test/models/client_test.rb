@@ -5,13 +5,12 @@ class ClientTest < Minitest::Test
 
   def test_there_is_client
     assert Client
-
   end
 
   def test_it_can_create_client_instance
     client = Client.create(identifier: 'jumpstartlab', root_url: 'http://jumpstartlab.com')
 
-    assert_equal 1, Client.count
+    assert Client.exists?(1)
     assert_equal 'jumpstartlab', client.identifier
     assert_equal 'http://jumpstartlab.com', client.root_url
   end
@@ -24,7 +23,6 @@ class ClientTest < Minitest::Test
 
     assert client.respond_to?(:payload_requests)
     assert_instance_of PayloadRequest, client.payload_requests.first
-
   end
 
   def test_it_cannot_create_client_without_identifer
@@ -117,25 +115,5 @@ class ClientTest < Minitest::Test
 
     assert_equal [["1020", "640"], ["1520", "1080"], ["1280", "800"], ["1600", "1000"]], client.all_resolutions
   end
-
-  # def test_average_response_time_for_client
-  #   five_payload_requests
-  #
-  #   assert_equal 39, Client.average_response_time("jumplab")
-  #   assert_equal 35, Client.average_response_time("startlab")
-  # end
-  #
-  # def test_max_response_time_for_a_client
-  #   five_payload_requests
-  #
-  #   assert_equal 60, Client.max_response_time("jumplab")
-  #   assert_equal 42, Client.max_response_time("startlab")
-  # end
-  #
-  # def test_min_response_time_for_a_client
-  #   five_payload_requests
-  #
-  #   assert_equal 20, Client.min_response_time("jumplab")
-  #   assert_equal 28, Client.min_response_time("startlab")
-  # end
+  
 end

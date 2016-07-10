@@ -4,20 +4,18 @@ class UrlTest < Minitest::Test
   include TestHelpers
 
   def test_it_can_create_url_instance
-    url = create_url
-    address = "http://jumpstartlab.com/blog"
+    Url.create(address: "http://jumpstartlab.com/blog")
 
-    assert_equal address, url.address
+    assert Url.exists?(1)
   end
 
   def test_url_relationship_to_payload_requests
-    create_payload(1)
+    three_relationship_requests
     url = Url.first
     url.payload_requests << PayloadRequest.all.first
 
-    refute url.payload_requests.empty?
-    url.payload_requests.exists?(url.id)
-    assert_equal 1, url.payload_requests.size
+    assert url.respond_to?(:payload_requests)
+    assert_instance_of PayloadRequest, url.payload_requests.first
   end
 
   def test_it_cannot_create_url_without_address

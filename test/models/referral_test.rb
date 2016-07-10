@@ -2,12 +2,11 @@ require_relative '../test_helper'
 
 class ReferralTest < Minitest::Test
   include TestHelpers
-
+  
   def test_it_can_create_referral_instance
-    referral = create_referral
-    address = "http://jumpstartlab.com"
+    Referral.create(address: "http://jumpstartlab.com")
 
-    assert_equal address, referral.address
+    assert Referral.exists?(1)
   end
 
   def test_cannot_create_referral_without_address
