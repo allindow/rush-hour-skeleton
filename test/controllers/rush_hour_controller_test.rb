@@ -71,4 +71,15 @@ class RushHourTest < Minitest::Test
     assert_equal "Application Not Registered", last_response.body
   end
 
+  def test_find_client
+    skip
+    post '/sources', {identifier: 'jumpstartlab', rootUrl: 'http://jumpstartlab.com'}
+    post '/sources/jumpstartlab/data', {payload: raw_payload}
+    get "/sources/:identifier"
+
+    require "pry"; binding.pry
+
+    assert_instance_of Client, client.confirm_client_account
+  end
+
 end

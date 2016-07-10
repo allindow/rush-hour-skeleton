@@ -61,6 +61,7 @@ class UrlTest < Minitest::Test
   end
 
   def test_three_most_popular_user_agents
+    skip
     three_relationship_requests
     five_payload_requests
 

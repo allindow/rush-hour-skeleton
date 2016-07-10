@@ -16,7 +16,7 @@ module RushHour
     end
 
     get "/sources/:identifier" do |identifier|
-      @identifier = PayloadChecker.response2(identifier)
+      @identifier = PayloadChecker.confirm_client_account(identifier)
       # @identifier = (Client.where(identifier: identifier).take)
       @avg_resp_time       = @identifier.average_response_time
       @max_resp_time       = @identifier.max_response_time
