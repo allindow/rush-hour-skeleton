@@ -42,10 +42,7 @@ class PayloadChecker
     if client.nil?
       nil_client
     else
-      #select FROM payload_requests where client identifier
-      # x = Client.where(identifier: identifier)
       if client.payload_requests
-        #asiign the identifier to the instace variable
         Client.where(identifier: identifier).take
       else
         payload_missing
