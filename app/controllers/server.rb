@@ -17,7 +17,6 @@ module RushHour
 
     get "/sources/:identifier" do |identifier|
       @identifier = PayloadChecker.confirm_client_account(identifier)
-      # @identifier = (Client.where(identifier: identifier).take)
       @avg_resp_time       = @identifier.average_response_time
       @max_resp_time       = @identifier.max_response_time
       @min_resp_time       = @identifier.min_response_time
@@ -30,6 +29,15 @@ module RushHour
 
       erb :client_show
     end
+
+      get "/sources/:identifier/urls/:relative_path" do |identifier, relative_path|
+        @identifier    = PayloadChecker.confirm_client_account(identifier)
+        @relative_path = PayloadChecker.confirm_url_path(identifier, relative_path)
+
+        # @top_three_referrers = @relative_path.most_popular_referrers
+
+        erb :client_url_show
+      end
 
   end
 end
