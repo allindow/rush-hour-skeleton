@@ -20,14 +20,13 @@ class Client < ActiveRecord::Base
     payload_requests.minimum(:responded_in).to_i
   end
 
-  def most_frequent_request_type #test that most freq always come last in the hash
+  def most_frequent_request_type
     top_req = request_types.group(:verb).count.sort_by {|usr_agt| usr_agt[-1]}
     top_req.last[0]
   end
 
   def all_verbs
-    # group.count returning hash in different order. sort?
-    request_types.group(:verb).count.keys
+    request_types.group(:verb).count.keys.sort
   end
 
   def all_urls_most_to_least_requested

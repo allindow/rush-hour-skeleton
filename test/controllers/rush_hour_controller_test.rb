@@ -16,7 +16,7 @@ class RushHourTest < Minitest::Test
 
     assert_equal 0, Client.count
     assert_equal 400, last_response.status
-    assert_equal "Identifier can't be blank", last_response.body
+    assert_equal "Missing Parameters", last_response.body
   end
 
   def test_that_it_cannot_create_client_without_root_url
@@ -24,7 +24,7 @@ class RushHourTest < Minitest::Test
 
     assert_equal 0, Client.count
     assert_equal 400, last_response.status
-    assert_equal "Root url can't be blank", last_response.body
+    assert_equal "Missing Parameters", last_response.body
   end
 
   def test_it_does_not_create_client_with_existing_identifier
@@ -71,15 +71,13 @@ class RushHourTest < Minitest::Test
     assert_equal "Application Not Registered", last_response.body
   end
 
-  def test_find_client
-    skip
+  def test_it_can_find_client
     post '/sources', {identifier: 'jumpstartlab', rootUrl: 'http://jumpstartlab.com'}
     post '/sources/jumpstartlab/data', {payload: raw_payload}
-    get "/sources/:identifier"
+    get "/sources/jumpstartlab"
 
-    require "pry"; binding.pry
-
-    assert_instance_of Client, client.confirm_client_account
+    assert_equal "jumpstartlab", PayloadChecker.confirm_client_account("jumpstartlab").identifier
+    assert_equal "http://jumpstartlab.com", PayloadChecker.confirm_client_account("jumpstartlab").root_url
   end
 
   def test_it_finds_url_path #WIP

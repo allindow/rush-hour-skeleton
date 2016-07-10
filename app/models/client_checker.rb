@@ -7,7 +7,7 @@ class ClientChecker
     elsif client.errors.full_messages.join(', ') == "Identifier has already been taken"
       [403, 'Identifier Already Exists']
     else
-      [400, client.errors.full_messages.join(', ')]
+      [400, "Missing Parameters"]
     end
   end
 

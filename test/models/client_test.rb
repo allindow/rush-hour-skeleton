@@ -76,12 +76,11 @@ class ClientTest < Minitest::Test
   end
 
   def test_all_verbs
-    skip
     five_payload_requests
 
     client = Client.first
 
-    assert_equal ["POST", "GET"], client.all_verbs
+    assert_equal ["GET", "POST"], client.all_verbs
   end
 
   def test_all_urls_most_to_least_requested
@@ -115,5 +114,5 @@ class ClientTest < Minitest::Test
 
     assert_equal [["1020", "640"], ["1520", "1080"], ["1280", "800"], ["1600", "1000"]], client.all_resolutions
   end
-  
+
 end
