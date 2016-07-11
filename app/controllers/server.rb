@@ -2,7 +2,7 @@ module RushHour
   class Server < Sinatra::Base
 
     not_found do
-      erb :error
+      erb :error, :layout => false
     end
 
     get '/' do
