@@ -8,7 +8,7 @@ class ClientSeesStatsByUrl < FeatureTest
 
     visit '/sources/yahoo/urls/weather'
 
-    assert page.find("#url-page-title").has_content?("http://yahoo.com/weather")
+    assert page.find(".page-title").has_content?("http://yahoo.com/weather")
 
     within('.stats') do
       assert page.find('li:nth-child(1)').has_content?("Maximum Response Time")
