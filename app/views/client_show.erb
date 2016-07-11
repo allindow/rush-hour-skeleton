@@ -10,8 +10,8 @@
   </ul>
 </div>
 
-<div class="well">
-  <li>All URLs (most requested to least requested):</li>
+<div class="well client-urls">
+  <p><strong>All URLs (most requested to least requested):</strong></p>
   <ul>
     <%  @identifier.all_urls_most_to_least_requested.each do |url| %>
     <li><a href="/sources/<%= @identifier.identifier %>/urls/<%=Url.relative_path(url)%>"><%= url %></a></li><br>

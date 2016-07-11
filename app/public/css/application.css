@@ -14,6 +14,10 @@ body {
   background-color: #2A2C39;
 }
 
+.dropdown {
+  margin-top: 10px;
+}
+
 a#dLabel {
   color: #E9E9EB;
   font-size: 18px;
@@ -28,6 +32,16 @@ a#dLabel {
   margin-top: 100px;
 }
 
+.url-stats ul, .client-stats ul, .client-urls ul {
+  list-style: none;
+}
+
 #page-body {
   margin-top: 40px;
+}
+
+/********** CLIENT STATS ***********/
+
+.client-stats li {
+  margin-bottom: 5px;
 }
