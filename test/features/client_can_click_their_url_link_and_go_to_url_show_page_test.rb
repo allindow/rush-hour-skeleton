@@ -8,6 +8,7 @@ class ClientCanClickTheirUrlLinkAndGoToUrlShowPageTest < FeatureTest
 
     visit '/sources/jumpstartlab'
     click_link "http://jumpstartlab.com/blog"
+
     assert_equal "/sources/jumpstartlab/urls/blog", current_path
   end
 end

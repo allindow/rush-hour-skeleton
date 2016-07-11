@@ -74,19 +74,6 @@ class PayloadChecker
     ]
   end
 
-  #
-  # @avg_resp_time       = @identifier.average_response_time
-  # @max_resp_time       = @identifier.max_response_time
-  # @min_resp_time       = @identifier.min_response_time
-  # @most_freq_req_type  = @identifier.most_frequent_request_type
-  # @all_verbs           = @identifier.all_verbs
-  # @all_urls_ranked     = @identifier.all_urls_most_to_least_requested
-  # @all_browsers        = @identifier.all_browsers
-  # @all_os              = @identifier.all_os
-  # @all_res             = @identifier.all_resolutions
-
-
-
   def self.confirm_client_account(identifier)
     client = Client.find_by(identifier: identifier)
     if client.nil?

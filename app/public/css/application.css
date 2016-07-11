@@ -8,11 +8,55 @@ body {
   color: #212121;
 }
 
-/********** ALL ***********/
-.page-title {
+/********** GENERAL ***********/
+
+.navbar-default {
+  background-color: #2A2C39;
+}
+
+.dropdown {
+  margin-top: 10px;
+}
+
+a#dLabel {
+  color: #E9E9EB;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.page-title, .url-stats {
   margin-top: 100px;
+}
+
+.url-stats ul, .client-stats ul, .client-urls ul {
+  list-style: none;
 }
 
 #page-body {
   margin-top: 40px;
+}
+
+ul {
+  padding-left: 10px;
+}
+
+a, a:hover {
+  color: #c90707;
+}
+
+
+/********** CLIENT STATS ***********/
+
+#app-title, #app-subtitle {
+  margin-left: 20px;
+}
+
+#app-title {
+  margin-top: 60px;
+}
+
+/********** CLIENT STATS ***********/
+
+.client-stats li {
+  margin-bottom: 5px;
 }

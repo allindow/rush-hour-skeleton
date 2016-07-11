@@ -27,7 +27,6 @@ module RushHour
     get "/sources/:identifier" do |identifier|
       @clients = Client.all
       @identifier = PayloadChecker.confirm_client_account(identifier)
-
       erb :client_show
     end
 

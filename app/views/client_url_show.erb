@@ -1,9 +1,9 @@
 <div class="container col-md-12" class="page-title">
-  <h2><%= (@identifier.root_url + "/#{@relativepath}") %></h2>
+  <h2 id="url-title"><%= (@identifier.root_url + "/#{@relativepath}") %></h2>
 </div>
 
-<div class="well page-title">
-  <ul>
+<div class="well url-stats">
+  <ul class="stats-list">
     <% UrlChecker.content(@identifier.root_url + "/#{@relativepath}").each do |stat| %>
     <li><%= stat %></li>
     <%end%>

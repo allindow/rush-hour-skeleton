@@ -10,5 +10,4 @@ class Resolution < ActiveRecord::Base
        "(#{resolution[0]} x #{resolution[1]})"
      end
    end
-
 end

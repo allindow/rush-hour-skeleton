@@ -19,7 +19,6 @@ class UrlChecker
 
   def self.valid_url_data(url)
     url = Url.find_by(address: url)
-
     [
     "Maximum Response Time: #{url.max_response_time}",
     "Minimum Response Time: #{url.min_response_time}",
@@ -29,8 +28,5 @@ class UrlChecker
     "Three most popular referrers: #{url.most_popular_referrers}",
     "Three most popular user agent: #{url.most_popular_user_agents}"
     ]
-
   end
-
-
 end

@@ -25,5 +25,4 @@ class SoftwareAgent < ActiveRecord::Base
     end
     return os
   end
-
 end
