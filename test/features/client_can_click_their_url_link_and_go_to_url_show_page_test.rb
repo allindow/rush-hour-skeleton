@@ -1,6 +1,6 @@
 require_relative '../test_helper'
 
-class ClientCanClickTheirUrlLinkAndGoToUrlShowPage < FeatureTest
+class ClientCanClickTheirUrlLinkAndGoToUrlShowPageTest < FeatureTest
 
   def test_client_url_link_functionality
     post '/sources', { identifier: 'jumpstartlab', rootUrl: 'http://jumpstartlab.com'}
