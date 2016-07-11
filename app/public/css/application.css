@@ -8,8 +8,23 @@ body {
   color: #212121;
 }
 
-/********** ALL ***********/
-.page-title {
+/********** GENERAL ***********/
+
+.navbar-default {
+  background-color: #2A2C39;
+}
+
+a#dLabel {
+  color: #E9E9EB;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+#app-title {
+  margin-top: 60px;
+}
+
+.page-title, .url-stats {
   margin-top: 100px;
 }
 

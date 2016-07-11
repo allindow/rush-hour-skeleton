@@ -8,8 +8,7 @@ class ClientSeesTheirStatsPageTest < FeatureTest
 
     visit '/sources/jumpstartlab'
 
-    assert page.find("h2").has_content?("Jumpstartlab")
-    
+    assert page.find("h2").has_content?("Jumpstartlab")  
     assert page.find(".client-stats").has_content?("Average Response Time")
     assert page.find(".client-stats").has_content?("Maximum Response Time")
     assert page.find(".client-stats").has_content?("Minimum Response Time")
