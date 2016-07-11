@@ -3,12 +3,11 @@ require_relative '../test_helper'
 class ClientSeesTheirStatsPageTest < FeatureTest
 
   def test_client_sees_their_stats_page
-    post '/sources', { identifier: 'jumpstartlab', rootUrl: 'http://jumpstartlab.com'}
-    post '/sources/jumpstartlab/data', {payload: raw_payload}
+    create_one_payload_request
 
-    visit '/sources/jumpstartlab'
+    visit '/sources/yahoo'
 
-    assert page.find("h2").has_content?("Jumpstartlab")
+    assert page.find("h2").has_content?("Yahoo")
     assert page.find(".stats").has_content?("Average Response Time")
     assert page.find(".stats").has_content?("Maximum Response Time")
     assert page.find(".stats").has_content?("Minimum Response Time")
@@ -20,7 +19,7 @@ class ClientSeesTheirStatsPageTest < FeatureTest
 
     within('div:nth-child(3)') do
       assert page.has_content?('All URLs')
-      assert page.has_content?('http://jumpstartlab.com/blog')
+      assert page.has_content?('http://yahoo.com/weather')
     end
   end
 end
