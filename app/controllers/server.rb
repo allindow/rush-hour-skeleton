@@ -27,6 +27,7 @@ module RushHour
     get "/sources/:identifier" do |identifier|
       @clients = Client.all
       @identifier = PayloadChecker.confirm_client_account(identifier)
+      not_found if @identifier.class == Array
       erb :client_show
     end
 

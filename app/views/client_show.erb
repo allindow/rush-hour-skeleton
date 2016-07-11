@@ -1,7 +1,6 @@
 <div class="container col-md-12" class="page-title">
   <h2><%= @identifier.identifier.capitalize %></h2>
 </div>
-​
 
 <% content = PayloadChecker.client_content(@identifier)%>
 <%= erb :'shared/_stats', locals:{content: content} %>

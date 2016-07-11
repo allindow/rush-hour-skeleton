@@ -8,15 +8,15 @@ class ClientSeesTheirStatsPageTest < FeatureTest
 
     visit '/sources/jumpstartlab'
 
-    assert page.find("h2").has_content?("Jumpstartlab")  
-    assert page.find(".client-stats").has_content?("Average Response Time")
-    assert page.find(".client-stats").has_content?("Maximum Response Time")
-    assert page.find(".client-stats").has_content?("Minimum Response Time")
-    assert page.find(".client-stats").has_content?("Most Frequent Request Type")
-    assert page.find(".client-stats").has_content?("All Verbs")
-    assert page.find(".client-stats").has_content?("All Browsers")
-    assert page.find(".client-stats").has_content?("All Operating Systems")
-    assert page.find(".client-stats").has_content?("All Resolutions")
+    assert page.find("h2").has_content?("Jumpstartlab")
+    assert page.find(".stats").has_content?("Average Response Time")
+    assert page.find(".stats").has_content?("Maximum Response Time")
+    assert page.find(".stats").has_content?("Minimum Response Time")
+    assert page.find(".stats").has_content?("Most Frequent Request Type")
+    assert page.find(".stats").has_content?("All Verbs")
+    assert page.find(".stats").has_content?("All Browsers")
+    assert page.find(".stats").has_content?("All Operating Systems")
+    assert page.find(".stats").has_content?("All Resolutions")
 
     within('div:nth-child(3)') do
       assert page.has_content?('All URLs')

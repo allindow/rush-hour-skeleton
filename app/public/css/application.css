@@ -54,3 +54,9 @@ a, a:hover {
 #app-title {
   margin-top: 60px;
 }
+
+/********** URL STATS ***********/
+
+#url-page-title {
+  margin-bottom: 100px;
+}
