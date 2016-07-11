@@ -1,1 +1,12 @@
+<ul>
+  <%  @identifier.all_urls_most_to_least_requested.each do |url| %>
+  <li><a href="/sources/<%= @identifier.identifier %>/urls/<%=Url.relative_path(url)%>"><%= url %></a></li><br>
+  <% end %>
+</ul>
 
+
+<ul>
+  <%  @identifier.all_urls_most_to_least_requested.each do |url| %>
+  <li><a href="/sources/<%= @identifier.identifier %>/urls/<%=Url.relative_path(url)%>"><%= url %></a></li><br>
+  <% end %>
+</ul>

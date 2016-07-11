@@ -36,7 +36,7 @@ class PayloadRequest < ActiveRecord::Base
   end
 
   def self.max_response_time
-    PayloadRequest.maximum(:responded_in)
+    maximum(:responded_in)
   end
-  
+
 end

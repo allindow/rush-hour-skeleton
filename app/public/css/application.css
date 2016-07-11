@@ -24,10 +24,6 @@ a#dLabel {
   text-decoration: none;
 }
 
-#app-title {
-  margin-top: 60px;
-}
-
 .page-title, .url-stats {
   margin-top: 100px;
 }
@@ -38,6 +34,25 @@ a#dLabel {
 
 #page-body {
   margin-top: 40px;
+}
+
+ul {
+  padding-left: 10px;
+}
+
+a, a:hover {
+  color: #c90707;
+}
+
+
+/********** CLIENT STATS ***********/
+
+#app-title, #app-subtitle {
+  margin-left: 20px;
+}
+
+#app-title {
+  margin-top: 60px;
 }
 
 /********** CLIENT STATS ***********/

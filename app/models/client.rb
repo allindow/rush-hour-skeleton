@@ -24,7 +24,7 @@ class Client < ActiveRecord::Base
     freq = request_types.group(:verb).count
     top_req = freq.sort_by {|usr_agt| usr_agt}.sort_by(&:last).reverse
     top_req.last[0]
-    
+
     # top_req = request_types.group(:verb).count
     # .sort_by {|usr_agt| usr_agt[-1]}
     # top_req.last[0]
@@ -45,7 +45,7 @@ class Client < ActiveRecord::Base
     end.uniq.join(", ")
   end
 
-  def all_os #refactor with browser
+  def all_os
     software_agents.pluck(:message).map do |item|
       UserAgent.parse(item).os
     end.uniq.join(", ")

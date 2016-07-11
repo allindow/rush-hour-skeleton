@@ -3,7 +3,6 @@ class RequestType < ActiveRecord::Base
   has_many :payload_requests
 
   def self.all_verbs_used
-    RequestType.all.pluck(:verb)
+    all.pluck(:verb)
   end
-
 end
