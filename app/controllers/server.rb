@@ -5,6 +5,15 @@ module RushHour
       erb :error
     end
 
+    get '/' do
+      redirect '/sources'
+    end
+
+    get '/sources' do
+      @clients = Client.all
+      erb :welcome
+    end
+
     post '/sources' do
       cv = ClientChecker.response(params)
       status, body = cv
