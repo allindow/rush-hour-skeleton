@@ -3,8 +3,7 @@ require_relative '../test_helper'
 class ClientSeesAppWelcomePageTest < FeatureTest
 
   def test_client_sees_welcome_page
-    post '/sources', { identifier: 'jumpstartlab', rootUrl: 'http://jumpstartlab.com'}
-    post '/sources/jumpstartlab/data', {payload: raw_payload}
+    Client.create(identifier: 'jumpstartlab', root_url: 'http://jumpstartlab.com')
 
     visit '/'
 

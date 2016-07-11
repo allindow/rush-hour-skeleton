@@ -3,8 +3,7 @@ require_relative '../test_helper'
 class ClientSeesStatsByUrl < FeatureTest
 
   def test_client_sees_stats_by_url
-    post '/sources', { identifier: 'yahoo', rootUrl: 'http://yahoo.com'}
-    post '/sources/yahoo/data', {payload: raw_payload2}
+    create_one_payload_request
 
     visit '/sources/yahoo/urls/weather'
 

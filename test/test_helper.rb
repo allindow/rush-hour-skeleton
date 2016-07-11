@@ -55,20 +55,6 @@ module TestHelpers
   }'
   end
 
-  def raw_payload2
-    '{
-    "url":"http://yahoo.com/weather",
-    "requestedAt":"2013-02-16 21:38:28 -0700",
-    "respondedIn":37,
-    "referredBy":"http://yahoo.com",
-    "requestType":"GET",
-    "userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1309.0 Safari/537.17",
-    "resolutionWidth":"1920",
-    "resolutionHeight":"1280",
-    "ip":"63.29.38.211"
-  }'
-  end
-
   def create_faker_payloads(n)
     n.times do
       time = Faker::Time.between(2.days.ago, Date.today, :all).to_s
@@ -142,6 +128,20 @@ module TestHelpers
     verbs = ["GET", "PUT", "POST", "DELETE"]
     RequestType.find_or_create_by(
     verb: verbs.sample
+    )
+  end
+
+  def create_one_payload_request
+    PayloadRequest.create(
+    requested_at: "2013-02-16 21:38:28 -0700",
+    responded_in: 37,
+    url_id: Url.create(address: "http://yahoo.com/weather").id,
+    ip_id: Ip.create(address: "63.29.38.211").id,
+    request_type_id: RequestType.create(verb: "GET").id,
+    software_agent_id: SoftwareAgent.create(message: "Mozilla/5.0 (Macintosh; Windows XP) AppleWebKit/537.17 (KHTML, like Gecko) Firefox/24.0.1309.0 Safari/537.17").id,
+    resolution_id: Resolution.create(width:"1520", height: "1080").id,
+    client_id: Client.create(identifier: 'yahoo', root_url: "http://yahoo.com").id,
+    referral_id: Referral.create(address: "wwww.google.com").id
     )
   end
 
