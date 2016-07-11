@@ -21,7 +21,7 @@
             <ul class="dropdown-menu" aria-labelledby="dLabel">
               <% @clients.each do |client| %>
 
-              <li><a href="/sources/<%= client.identifier%>"><%= client.identifier  %></a>
+              <li><a href="/sources/<%= client.identifier%>"><%= client.identifier.capitalize  %></a>
               </li>
               <% end %>
             </ul>

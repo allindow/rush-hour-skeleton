@@ -7,10 +7,10 @@ class ClientSeesAppWelcomePageTest < FeatureTest
     post '/sources/jumpstartlab/data', {payload: raw_payload}
 
     visit '/'
-    
+
     assert_equal "/sources", current_path
     assert page.find("h1").has_content?("RushHour")
-    assert page.find("h4").has_content?("Select your account from above")
+    assert page.find("h4").has_content?("Select your account from the menu above.")
     assert page.has_content?("Client")
   end
 end

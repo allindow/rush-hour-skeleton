@@ -28,7 +28,7 @@ a#dLabel {
   margin-top: 100px;
 }
 
-.url-stats ul, .client-stats ul, .client-urls ul {
+.stats ul {
   list-style: none;
 }
 
@@ -53,10 +53,4 @@ a, a:hover {
 
 #app-title {
   margin-top: 60px;
-}
-
-/********** CLIENT STATS ***********/
-
-.client-stats li {
-  margin-bottom: 5px;
 }
