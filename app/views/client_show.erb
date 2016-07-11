@@ -1,13 +1,15 @@
-<div class="container col-md-12" class="page-title">
-  <h2><%= @identifier.identifier.capitalize %></h2>
-</div>
-​
+<!-- <div class="container col-md-12" class="page-title"> -->
+  <h2 class="page-title"><%= @identifier.identifier.capitalize %></h2>
+<!-- </div> -->
+
+
 
 <% content = PayloadChecker.client_content(@identifier)%>
 <%= erb :'shared/_stats', locals:{content: content} %>
 
+
 <div class="well client-urls">
-  <p><strong>All URLs (most requested to least requested):</strong></p>
+  <p><strong>All URLs</strong><br>(most requested to least requested)</p>
   <ul>
     <%  @identifier.all_urls_most_to_least_requested.each do |url| %>
       <%= erb :'shared/_urls', locals:{identifier: @identifier, url: url } %>
