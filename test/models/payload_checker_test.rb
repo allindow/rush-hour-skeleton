@@ -17,9 +17,9 @@ class ParserTest < Minitest::Test
 
   def test_403_already_received_if_payload_is_duplicate
     client = Client.create(identifier: 'jumpstartlab', root_url: 'http://jumpstartlab.com')
-    client.payload_requests.create(Parser.parsed_payload(test_params))
+    client.payload_requests.create(Parser.response(test_params, 'jumpstartlab')
 
-    assert_equal [403, "Already Received Request"], PayloadChecker.response('jumpstartlab', test_params)
+    assert_equal [403, "Already Received Request"], PayloadChecker.response(test_params, 'jumpstartlab')
   end
 
   def test_returns_client_instance_if_client_confirmed

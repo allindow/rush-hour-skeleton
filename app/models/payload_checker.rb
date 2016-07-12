@@ -30,7 +30,8 @@ class PayloadChecker
     end
   end
 
-  def self.response(identifier, params)
+
+  def self.response(params, identifier)
     client = Client.find_by(identifier: identifier)
     if params.empty?
       payload_missing

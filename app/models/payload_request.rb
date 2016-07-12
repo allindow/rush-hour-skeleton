@@ -1,5 +1,5 @@
 class PayloadRequest < ActiveRecord::Base
-  validates :requested_at, presence: true, uniqueness: { scope: [:client_id, :referral_id, :request_type_id, :responded_in, :url_id, :requested_at, :resolution_id, :ip_id, :software_agent_id] }
+  validates :requested_at, presence: true, uniqueness: { scope: [:client_id, :referral_id, :request_type_id, :responded_in, :url_id, :resolution_id, :ip_id, :software_agent_id] }
   validates :url_id, presence: true
   validates :request_type_id, presence: true
   validates :resolution_id, presence: true
