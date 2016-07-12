@@ -1,23 +1,23 @@
 require_relative '../test_helper'
 
-class ParserTest < Minitest::Test
+class PayloadCheckerTest < Minitest::Test
   include TestHelpers
 
   def test_200_success_response_if_payload_valid
     client = Client.create(identifier: 'jumpstartlab', root_url: 'http://jumpstartlab.com')
 
-    assert_equal [200, "Success"], PayloadChecker.response('jumpstartlab', test_params)
+    assert_equal [200, "Success"], PayloadChecker.response(test_params, 'jumpstartlab')
   end
 
   def test_400_missing_payload_response_if_no_payload
     client = Client.create(identifier: 'jumpstartlab', root_url: 'http://jumpstartlab.com')
 
-    assert_equal [400, "Missing Payload"], PayloadChecker.response('jumpstartlab', {})
+    assert_equal [400, "Missing Payload"], PayloadChecker.response({}, 'jumpstartlab')
   end
 
   def test_403_already_received_if_payload_is_duplicate
     client = Client.create(identifier: 'jumpstartlab', root_url: 'http://jumpstartlab.com')
-    client.payload_requests.create(Parser.response(test_params, 'jumpstartlab')
+    PayloadChecker.response(test_params, 'jumpstartlab')
 
     assert_equal [403, "Already Received Request"], PayloadChecker.response(test_params, 'jumpstartlab')
   end
