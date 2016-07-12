@@ -2,7 +2,7 @@
 
 
 
-<% content = PayloadChecker.client_content(@identifier)%>
+<% content = @identifier.client_stats_content%>
 <%= erb :'shared/_stats', locals:{content: content} %>
 
 

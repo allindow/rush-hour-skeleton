@@ -12,8 +12,8 @@ class PayloadChecker
       [403, "Url has not been requested"]
     end
 
-  def self.error_message(client)
-    client.errors.full_messages.join(", ")
+  def self.error_message(pr)
+    pr.errors.full_messages.join(", ")
   end
 
   def self.taken_client
@@ -22,10 +22,10 @@ class PayloadChecker
 
   def self.responder(client, params)
     payload_data = Parser.parsed_payload(params)
-    client = client.payload_requests.create(payload_data)
-    if client.save
+    pr = client.payload_requests.create(payload_data)
+    if pr.save
       [200, "Success"]
-    else error_message(client) == taken_client
+    else
       [403, "Already Received Request"]
     end
   end
@@ -47,31 +47,6 @@ class PayloadChecker
     else
       payload_missing
     end
-  end
-
-  def self.client_content(client)
-    if client.payload_requests.empty?
-      client_no_payload
-    else
-      valid_client_data(client)
-    end
-  end
-
-  def self.client_no_payload
-    ["Nothing registered for this client"]
-  end
-
-  def self.valid_client_data(client)
-    [
-    "Average Response Time: #{client.average_response_time}",
-    "Maximum Response Time: #{client.max_response_time}",
-    "Minimum Response Time: #{client.min_response_time}",
-    "Most Frequent Request Type: #{client.most_frequent_request_type}",
-    "All Verbs: #{client.all_verbs}",
-    "All Browsers: #{client.all_browsers}",
-    "All Operating Systems: #{client.all_os}",
-    "All Resolutions: #{client.all_resolutions}"
-    ]
   end
 
   def self.confirm_client_account(identifier)
