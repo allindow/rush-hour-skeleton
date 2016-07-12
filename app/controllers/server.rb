@@ -34,7 +34,9 @@ module RushHour
     get "/sources/:identifier/urls/:RELATIVEPATH" do |identifier, relativepath|
       @clients = Client.all
       @identifier = PayloadChecker.confirm_client_account(identifier)
-      @relativepath = relativepath
+      # @relativepath = relativepath
+      @client = Client.find_by(identifier: identifier)
+      @url = @client.root_url + "/#{relativepath}"
       erb :client_url_show
     end
   end

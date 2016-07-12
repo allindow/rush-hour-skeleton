@@ -1,4 +1,4 @@
 class Ip < ActiveRecord::Base
-  validates :address, presence: true
+  validates :address, presence: true, uniqueness: true
   has_many :payload_requests
 end

@@ -1,4 +1,4 @@
-<h2 class="page-title"><%= @identifier.root_url + "/#{@relativepath}"%></h2>
+<h2 class="page-title"><%= @url %></h2>
 
-<% content = UrlChecker.content(@identifier.root_url + "/#{@relativepath}") %>
+<% content = @client.url_stats_content(@url) %>
 <%= erb :'shared/_stats', locals:{content: content} %>

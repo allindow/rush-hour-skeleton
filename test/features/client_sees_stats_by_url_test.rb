@@ -6,7 +6,6 @@ class ClientSeesStatsByUrl < FeatureTest
     create_one_payload_request
 
     visit '/sources/yahoo/urls/weather'
-
     assert page.find(".page-title").has_content?("http://yahoo.com/weather")
 
     within('.stats') do
