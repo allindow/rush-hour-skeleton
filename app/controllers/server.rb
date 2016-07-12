@@ -20,7 +20,7 @@ module RushHour
     end
 
     post "/sources/:identifier/data" do |identifier|
-      cv = PayloadChecker.response(identifier, request.params)
+      cv = PayloadChecker.response(params, identifier)
       status, body = cv
     end
 
