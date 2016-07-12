@@ -33,10 +33,10 @@ class PayloadChecker
 
   def self.response(params, identifier)
     client = Client.find_by(identifier: identifier)
-    if params.empty?
-      payload_missing
-    elsif client.nil?
+    if client.nil?
       nil_client
+    elsif params[:payload].nil? && params["payload"].nil?
+      payload_missing
     else
       responder(client, params)
     end

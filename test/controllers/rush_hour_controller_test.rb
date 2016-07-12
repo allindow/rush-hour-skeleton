@@ -63,7 +63,7 @@ class RushHourTest < Minitest::Test
     assert_equal 403, last_response.status
     assert_equal "Already Received Request", last_response.body
   end
-
+  
   def test_forbidden_if_application_not_registered
     post "/sources/jumpstartlab/data", {payload: raw_payload}
 
